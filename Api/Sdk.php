@@ -372,6 +372,52 @@ class Sdk
      *
      * @return scalar json response
      */
+    public function getObjectInfo($params = array())
+    {
+        // get and validate objectTypeId
+        $objectTypeId = false;
+        // get objectTypeId by object_type_name
+        if (isset($params['object_type_name'])) {
+            $objectTypeId = $this->getObjectTypeByName($params['object_type_name']);
+        }
+        // get objectTypeId by object_type_id
+        if (isset($params['object_type_id']) && isset($this->objectTypeIds[$params['object_type_id']])) {
+            $objectTypeId = $params['object_type_id'];
+        }
+        // get objectTypeId by objectID
+        if (isset($params['objectID'])) {
+            $objectTypeId = $params['objectID'];
+        }
+
+        $request = $this->client->createRequest('GET', 'objects/getInfo');
+        $query = $request->getQuery();
+        if (isset($params['format'])) {
+            $query->set('format', $params['format']);
+        }
+        if (!(is_null($objectTypeId) || $objectTypeId === false)) {
+            $query->set('objectID', (int) $objectTypeId);
+        }
+
+        try {
+            $response = $this->client->send($request);
+        } catch (RequestException $e) {
+            //echo $e->getRequest() . "\n";
+            if ($e->hasResponse()) {
+                //echo $e->getResponse() . "\n";
+            }
+        }
+
+        return $response->json();
+    }
+
+
+    /**
+     * Uses New API.
+     *
+     * @param array parameters
+     *
+     * @return scalar json response
+     */
     public function getObjectTypes($params = array())
     {
         // get and validate objectTypeId

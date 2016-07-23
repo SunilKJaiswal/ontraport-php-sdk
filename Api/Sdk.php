@@ -398,6 +398,26 @@ class Sdk
             $query->set('objectID', (int) $objectTypeId);
         }
 
+        if (isset($params['condition'])) {
+            $query->set('condition', $params['condition']);
+        }
+        if (isset($params['listFields'])) {
+            $query->set('listFields', $params['listFields']);
+        }
+        if (isset($params['search'])) {
+            $query->set('search', $params['search']);
+        }
+        if (isset($params['searchNotes'])) {
+            $query->set('searchNotes', $params['searchNotes']);
+        }
+        if (isset($params['date_range'])) {
+            $query->set('date_range', $params['date_range']);
+        }
+
+        if (isset($params['group_ids'])) {
+            $query->set('group_ids', $params['group_ids']);
+        }
+
         try {
             $response = $this->client->send($request);
         } catch (RequestException $e) {

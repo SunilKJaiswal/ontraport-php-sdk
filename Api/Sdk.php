@@ -1,6 +1,6 @@
 <?php
 
-namespace Kzap\Ontraport\Api;
+namespace SunilKJaiswal\Ontraport\Api;
 
 use Exception;
 use GuzzleHttp\Client;
@@ -370,7 +370,7 @@ class Sdk
      *
      * @param array parameters
      *
-     * @return scalar json response 
+     * @return scalar json response
      */
     public function getObjectInfo($params = array())
     {

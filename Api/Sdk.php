@@ -370,7 +370,7 @@ class Sdk
      *
      * @param array parameters
      *
-     * @return scalar json response
+     * @return scalar json response 
      */
     public function getObjectInfo($params = array())
     {
